@@ -68,7 +68,6 @@ app.controller('chatCtrlr', ['$scope', 'socket',
         });
 
         socket.on('rec msg', function (data) {
-
             console.log("rec msg " + data);
             console.log($scope.msgs);
 
