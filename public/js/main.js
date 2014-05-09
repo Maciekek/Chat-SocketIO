@@ -41,7 +41,6 @@ app.controller('chatCtrlr', ['$scope', 'socket',
                 socket.emit('send msg', prepareMessageWithLogin($scope.msg.text, $scope.msg.login));
                 $scope.msg.text = '';
             }
-            console.log("Poszło na soccet: " + socket.name);
         };
 
         $scope.chooseRoom = function(room){
@@ -69,7 +68,10 @@ app.controller('chatCtrlr', ['$scope', 'socket',
         });
 
         socket.on('rec msg', function (data) {
+
             console.log("rec msg " + data);
+            console.log($scope.msgs);
+
             $scope.msgs.unshift(data);
             $scope.$digest();
         });
