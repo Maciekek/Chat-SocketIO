@@ -32,13 +32,19 @@
             Wprowadz swoją wiadomość:
             <input type="text" data-ng-model="msg.text" maxlength="20">
         </form>
+        <div data-ng-model="channelInformation"></div>
     </div>
     <div class="roomsField">
         <div data-ng-repeat="room in rooms track by $index">
             <button ng-click="chooseRoom(room);">{{room}}</button>
         </div>
-        <button ng-click="newRoom()">Nowy pokój</button>
+
         <button ng-click="joinRoom()">Dołącz do pokoju</button>
+
+        <div class="newRoomField">
+            <input type="text" placeholder="Nazwa nowego pokoju" data-ng-model="new.room.name">
+            <button ng-click="newRoom()">Stwórz pokój</button>
+        </div>
     </div>
 </div>
 </body>

@@ -25,14 +25,17 @@ app.controller('chatCtrlr', ['$scope', 'socket',
         $scope.rooms = [];
 
         $scope.connected = false;
+
         $scope.newRoom = function() {
-            console.log("zmieniam pokoj");
-            socket.emit("change room", 'room2');
+            socket.emit("add new room", $scope.new.room.name);
+            console.log("Tworze nowy pokoj o nazwie " + $scope.new.room.name);
 
         };
+
         $scope.joinRoom = function()   {
             socket.emit("start");
         };
+
         $scope.sendMsg = function () {
             if ($scope.msg && $scope.msg.text) {
                 socket.emit('send msg', prepareMessageWithLogin($scope.msg.text, $scope.msg.login));
@@ -42,10 +45,9 @@ app.controller('chatCtrlr', ['$scope', 'socket',
         };
 
         $scope.chooseRoom = function(room){
-          socket.leave(socket.room);
-          socket.join(room);
+            $scope.msgs = '';
+            socket.emit('change room', room );
 
-          $scope.msgs = "";
         };
 
         socket.on('connect', function () {
@@ -70,6 +72,7 @@ app.controller('chatCtrlr', ['$scope', 'socket',
             $scope.msgs.unshift(data);
             $scope.$digest();
         });
+
         socket.on('show rooms', function(data){
             console.log("Wyswietlam pokoje:" + data);
             $scope.rooms = data;
