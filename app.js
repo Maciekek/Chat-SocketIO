@@ -19,7 +19,6 @@ io.sockets.on("connection", function(socket){
         socket.room = room;
         socket.join(room);
         console.log("przełączyłem na pokój o nazwie:  " + socket.room );
-
     });
 
     socket.on('start', function(){
@@ -27,6 +26,7 @@ io.sockets.on("connection", function(socket){
         socket.join('room1');
         console.log("Rozpoczynam nadawanie na kanale: " + socket.room);
     });
+
     socket.on('send msg', function(data){
         history.unshift(data);
         io.sockets.in(socket.room).emit('rec msg', data + " | pokój: "+ socket.room + " |");

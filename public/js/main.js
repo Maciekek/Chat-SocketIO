@@ -45,8 +45,9 @@ app.controller('chatCtrlr', ['$scope', 'socket',
         };
 
         $scope.chooseRoom = function(room){
-            $scope.msgs = '';
+            $scope.msgs = [];
             socket.emit('change room', room );
+            alert("Przełączyłeś się na pokój " + room);
 
         };
 
