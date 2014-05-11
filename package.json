@@ -6,10 +6,14 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "Wiesław Pawłowski <w.pawlowski@inf.ug.edu.pl>",
+  "author": "Maciej Kucharski <maciekek@gmail.com>",
   "license": "MIT",
   "dependencies": {
-    "express": "3.x",
-    "socket.io": "^0.9.16"
+   "connect": "^2.14.5",
+   "express": "3.x",
+   "socket.io": "^0.9.16",
+   "passport": "^0.2.0",
+   "passport-local": "^1.0.0",
+   "passport.socketio": "^3.0.1"
   }
 }
