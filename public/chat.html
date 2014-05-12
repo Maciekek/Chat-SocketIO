@@ -22,11 +22,7 @@
         <div id="chatLog">
             <div data-ng-repeat="msg in msgs track by $index">{{msg}}</div>
         </div>
-        <div>
-            <p>Wprowadz swój login:
-                <input type="text" data-ng-model="msg.login" maxlength="20">
-            </p>
-        </div>
+        
 
         <form action="" data-ng-submit="sendMsg()">
             Wprowadz swoją wiadomość:

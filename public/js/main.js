@@ -38,7 +38,7 @@ app.controller('chatCtrlr', ['$scope', 'socket',
 
         $scope.sendMsg = function () {
             if ($scope.msg && $scope.msg.text) {
-                socket.emit('send msg', prepareMessageWithLogin($scope.msg.text, $scope.msg.login));
+                socket.emit('send msg', $scope.msg.text);
                 $scope.msg.text = '';
             }
         };

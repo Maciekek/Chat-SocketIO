@@ -74,15 +74,7 @@ app.get('/chat', function(req,res){
 });
 
 app.get('/login', function (req, res) {
-    var body = '<html><body>'
-    body += '<form action="/login" method="post">';
-    body += '<div><label>Użytkownik:</label>';
-    body += '<input type="text" name="username"/><br/></div>';
-    body += '<div><label>Hasło:</label>';
-    body += '<input type="password" name="password"/></div>';
-    body += '<div><input type="submit" value="Zaloguj"/></div></form>';
-    body += '</body></html>'
-    res.send(body);
+    res.sendfile("public/login.html");
 });
 
 app.post('/login',
@@ -126,7 +118,7 @@ io.sockets.on("connection", function(socket){
     socket.on('send msg', function(data){
         roomName = socket.room;
         history[roomName].unshift(data);
-        io.sockets.in(socket.room).emit('rec msg', data);
+        io.sockets.in(socket.room).emit('rec msg',socket.handshake.user.username+ ": " +  data);
     });
 
     socket.on("add new room", function(newRoom){
