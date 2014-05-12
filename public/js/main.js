@@ -82,3 +82,10 @@ app.controller('chatCtrlr', ['$scope', 'socket',
         });
     }
 ]);
+
+
+app.controller('loginCtrl', ['$scope', 'socket',
+    function ($scope, socket) {
+        console.log("test");
+    }
+]);
