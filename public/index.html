@@ -11,41 +11,15 @@
 </head>
 
 <body data-ng-app="czatApka">
-<div data-ng-controller="chatCtrlr">
+<div data-ng-controller="loginCtrl">
     <div class="chatField">
-        <div data-ng-hide="connected" class="bulb">
-            <img src="img/bullet_red.png"> trwa łączenie…
-        </div>
-        <div data-ng-show="connected" class="bulb">
-            <img src="img/bullet_green.png"> połączono
-        </div>
-        <div id="chatLog">
-            <div data-ng-repeat="msg in msgs track by $index">{{msg}}</div>
-        </div>
-        <div>
-            <p>Wprowadz swój login:
-                <input type="text" data-ng-model="msg.login" maxlength="20">
-            </p>
-        </div>
-
-        <form action="" data-ng-submit="sendMsg()">
-            Wprowadz swoją wiadomość:
+        
+            <input type="text" data-ng-model="msg.login" maxlength="20">
+        
             <input type="text" data-ng-model="msg.text" maxlength="20">
-        </form>
-        <div data-ng-model="channelInformation"></div>
+        
     </div>
-    <div class="roomsField">
-        <div data-ng-repeat="room in rooms track by $index">
-            <button ng-click="chooseRoom(room);">{{room}}</button>
-        </div>
-
-        <button ng-click="joinRoom()">Dołącz do pokoju</button>
-
-        <div class="newRoomField">
-            <input type="text" placeholder="Nazwa nowego pokoju" data-ng-model="new.room.name">
-            <button ng-click="newRoom()">Stwórz pokój</button>
-        </div>
-    </div>
+   
 </div>
 </body>
 

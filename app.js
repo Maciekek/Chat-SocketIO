@@ -11,6 +11,15 @@ var rooms = ["Główny"];
 app.use(express.static("public"));
 app.use(express.static("bower_components"));
 
+app.get('/', function(req,res){
+    res.sendfile("public/index.html");
+});
+
+app.get('/chat', function(req,res){
+    res.sendfile("public/chat.html");
+});
+
+
 io.sockets.on("connection", function(socket){
     var roomName = "Główny";
     console.log(roomName);
