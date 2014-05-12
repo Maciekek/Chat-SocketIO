@@ -12,7 +12,11 @@ app.use(express.static("public"));
 app.use(express.static("bower_components"));
 
 io.sockets.on("connection", function(socket){
-    var roomName = socket.room;
+    var roomName = "Główny";
+    console.log(roomName);
+    history[roomName] = [];
+    socket.room = 'Główny';
+    socket.join("Główny");
     socket.emit('rec msg',"Witaj na czacie! Jesteś na kanale ogólnym!");
 
     socket.on('change room', function(room){
@@ -27,8 +31,8 @@ io.sockets.on("connection", function(socket){
     });
 
     socket.on('start', function(){
-        socket.room = 'room1';
-        socket.join('room1');
+        socket.room = 'Główny';
+        socket.join('Główny');
         console.log("Rozpoczynam nadawanie na kanale: " + socket.room);
     });
 
