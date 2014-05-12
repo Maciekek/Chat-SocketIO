@@ -38,6 +38,7 @@ passport.use(new LocalStrategy(
                 password: password
             });
         } else {
+            console.log("Złe dane");
             return done(null, false);
         }
     }
@@ -63,7 +64,13 @@ app.get('/', function(req,res){
 });
 
 app.get('/chat', function(req,res){
-    res.sendfile("public/chat.html");
+    if(req.user){
+        res.sendfile("public/chat.html");    
+    }
+    else {
+        res.sendfile("public/login.html");
+    }
+    
 });
 
 app.get('/login', function (req, res) {
@@ -80,7 +87,8 @@ app.get('/login', function (req, res) {
 
 app.post('/login',
     passport.authenticate('local', {
-        failureRedirect: '/login'
+        failureRedirect: '/login',
+        
     }),
     function (req, res) {
         res.redirect('/chat.html');
@@ -89,6 +97,8 @@ app.post('/login',
 
 
 io.sockets.on("connection", function(socket){
+    console.log('User Connected: ' + socket.handshake.user.username);
+
     var roomName = "Główny";
     console.log(roomName);
     history[roomName] = [];
@@ -133,14 +143,16 @@ io.sockets.on("connection", function(socket){
 
 var onAuthorizeSuccess = function (data, accept) {
     console.log('Udane połączenie z socket.io');
+
     accept(null, true);
 };
 
 var onAuthorizeFail = function (data, message, error, accept) {
     if (error) {
         throw new Error(message);
+        console.log("Nieudane logowanie");
     }
-    console.log('Nieudane połączenie z socket.io:', message);
+    console.log('Nieudane połączenie z socket.io asdasd:', message);
     accept(null, false);
 };
 
